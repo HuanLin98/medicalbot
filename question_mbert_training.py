@@ -64,7 +64,7 @@ trainer = Trainer(
 )
 
 trainer.train()
-
+print("finished training")
 save_path = f"{MODEL_PATH}/{TEST_NAME}.pth"
 torch.save(model.state_dict(), save_path)
 
