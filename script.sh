@@ -68,4 +68,4 @@ pip3 install torch==1.9.1+cu111 torchvision==0.10.1+cu111 torchaudio==0.9.1 -f h
 pip3 install transformers
 
 # Submit your job to the cluster
-srun --gres=gpu:3090:1 python question_training.py
+srun --gres=gpu:3090:1 python question_mbert_training.py
