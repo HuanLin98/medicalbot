@@ -37,7 +37,7 @@
 #SBATCH --gres=gpu:3090:1
 
 #What is the QOS assigned to you? Check with myinfo command
-#SBATCH --qos=UseMyInfoCommandToCheck
+#SBATCH --qos=cs425qos
 
 # Where should the log files go?
 # You must provide an absolute path eg /common/home/module/username/
