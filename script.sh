@@ -64,7 +64,7 @@ source ~/myenv/bin/activate
 # If you require any packages, install it as usual before the srun job submission.
 pip3 install pandas
 pip3 install numpy
-pip3 install torch
+pip3 install torch==1.9.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
 pip3 install transformers
 
 # Submit your job to the cluster
