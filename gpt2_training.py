@@ -31,6 +31,8 @@ print("The max model length is {} for this model, although the actual embedding 
 print("The beginning of sequence token {} token has the id {}".format(tokenizer.convert_ids_to_tokens(tokenizer.bos_token_id), tokenizer.bos_token_id))
 print("The end of sequence token {} has the id {}".format(tokenizer.convert_ids_to_tokens(tokenizer.eos_token_id), tokenizer.eos_token_id))
 print("The padding token {} has the id {}".format(tokenizer.convert_ids_to_tokens(tokenizer.pad_token_id), tokenizer.pad_token_id))
+print(f"The question token {'<|question|>'} has the id {tokenizer('<|question|>')}")
+print(f"The answer token {'<|answer|>'} has the id {tokenizer('<|answer|>')}")
 
 batch_size = 2
 
@@ -69,14 +71,16 @@ print('{:>5,} validation samples'.format(val_size))
 train_dataloader = DataLoader(
             train_dataset,  # The training samples.
             sampler = RandomSampler(train_dataset), # Select batches randomly
-            batch_size = batch_size # Trains with this batch size.
+            batch_size = batch_size, # Trains with this batch size.
+            num_workers=4
         )
 
 # For validation the order doesn't matter, so we'll just read them sequentially.
 validation_dataloader = DataLoader(
             val_dataset, # The validation samples.
             sampler = SequentialSampler(val_dataset), # Pull out batches sequentially.
-            batch_size = batch_size # Evaluate with this batch size.
+            batch_size = batch_size, # Evaluate with this batch size.
+            num_workers=4
         )
 
 # I'm not really doing anything with the config buheret
@@ -103,13 +107,13 @@ torch.cuda.manual_seed_all(seed_val)
 
 # some parameters I cooked up that work reasonably well
 
-epochs = 1
+epochs = 10
 learning_rate = 5e-4
 warmup_steps = 1e2
 epsilon = 1e-8
 
 # this produces sample output every 100 steps
-sample_every = 100
+sample_every = 1000
 
 # Note: AdamW is a class from the huggingface library (as opposed to pytorch) 
 optimizer = AdamW(model.parameters(),
