@@ -4,9 +4,9 @@ import pandas as pd
 from transformers import TrainingArguments
 from transformers import Trainer
 
-EPOCHS = 3
+EPOCHS = 20
 MODEL_PATH = "models"
-TEST_NAME = "question_4epoch"
+TEST_NAME = "question_20epoch"
 
 df = pd.read_csv("lasse_qa.csv")
 print(df.shape)
@@ -15,7 +15,7 @@ tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-uncased')
 model = BertForMaskedLM.from_pretrained('bert-base-multilingual-uncased')
 
 questions = list(df.loc[:, "question"])
-questions = questions[:20]
+# questions = questions[:20]
 question_inputs = tokenizer(questions, return_tensors='pt', max_length=240, 
         truncation=True, padding='max_length')
 
