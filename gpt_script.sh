@@ -28,7 +28,7 @@
 ################################################################
 
 # Who should receive the email notifications
-#SBATCH --mail-user=huanlin.tay.2019@scis.smu.edu.sg
+#SBATCH --mail-user=weijie.tay.2019@scis.smu.edu.sg
 
 # How long do you require the resources? Note : If the job exceeds this run time, the manager will kill the job.
 #SBATCH --time=23:00:00
@@ -45,7 +45,7 @@
 #SBATCH --output=%u.%j.out # STDOUT
 
 # Give the job a name
-#SBATCH --job-name=finalSubmissionFinal
+#SBATCH --job-name=gptTrainingtrial
 
 #################################################
 ##            END OF SBATCH COMMANDS           ##
@@ -66,6 +66,7 @@ source /common/scratch/CS425/CS425G7/myenv/bin/activate
 # pip3 install numpy
 # pip3 install torch==1.9.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
 # pip3 install transformers
+# pip3 install nltk
 
 # Submit your job to the cluster
 srun --gres=gpu:3090:1 python gpt2_training.py
