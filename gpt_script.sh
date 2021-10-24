@@ -66,7 +66,6 @@ source /common/scratch/CS425/CS425G7/myenv/bin/activate
 # pip3 install numpy
 # pip3 install torch==1.9.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
 # pip3 install transformers
-# pip3 install nltk
 
 # Submit your job to the cluster
 srun --gres=gpu:3090:1 python gpt2_training.py

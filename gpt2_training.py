@@ -13,8 +13,8 @@ torch.manual_seed(42)
 from transformers import GPT2LMHeadModel,  GPT2Tokenizer, GPT2Config, GPT2LMHeadModel
 from transformers import AdamW, get_linear_schedule_with_warmup
 
-import nltk
-nltk.download('punkt')
+# import nltk
+# nltk.download('punkt')
 
 df = pd.read_csv("lasse_qa.csv")
 print(df.shape)
