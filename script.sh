@@ -54,11 +54,11 @@
 # We're not loading any Python modules because Python is automatically loaded
 
 # Create a virtual environment
-python3 -m venv ~/myenv
+python3 -m venv /common/scratch/CS425/CS425G7/myenv
 
 # This command assumes that you've already created the environment previously
 # We're using an absolute path here. You may use a relative path, as long as SRUN is execute in the same working directory
-source ~/myenv/bin/activate
+source /common/scratch/CS425/CS425G7/myenv/bin/activate
 
 
 # If you require any packages, install it as usual before the srun job submission.
