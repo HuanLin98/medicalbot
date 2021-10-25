@@ -68,4 +68,4 @@ source /common/scratch/CS425/CS425G7/myenv/bin/activate
 # pip3 install transformers
 
 # Submit your job to the cluster
-srun --gres=gpu:3090:1 python question_mbert_training.py
+srun --gres=gpu:3090:1 python answer_mbert_training.py
