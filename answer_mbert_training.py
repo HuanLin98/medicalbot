@@ -4,11 +4,11 @@ import pandas as pd
 from transformers import TrainingArguments
 from transformers import Trainer
 
-EPOCHS = 20
+EPOCHS = 50
 MODEL_PATH = "models"
-TEST_NAME = "answer_20epoch"
+TEST_NAME = f"all_answer_{EPOCHS}epoch"
 
-df = pd.read_csv("lasse_qa.csv")
+df = pd.read_csv("shuffled_qa_consolidated.csv")
 print(df.shape)
 
 tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-uncased')
@@ -54,7 +54,8 @@ loader = torch.utils.data.DataLoader(question_dataset, batch_size=16, shuffle=Tr
 args = TrainingArguments(
     output_dir='/common/scratch/CS425/CS425G7',
     per_device_train_batch_size=16,
-    num_train_epochs=EPOCHS
+    num_train_epochs=EPOCHS,
+    save_strategy='no'
 )
 
 trainer = Trainer(
