@@ -45,7 +45,7 @@
 #SBATCH --output=%u.%j.out # STDOUT
 
 # Give the job a name
-#SBATCH --job-name=finalSubmissionFinal
+#SBATCH --job-name=question_training
 
 #################################################
 ##            END OF SBATCH COMMANDS           ##

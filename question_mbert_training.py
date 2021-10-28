@@ -52,9 +52,10 @@ question_dataset = QuestionDataset(question_inputs)
 loader = torch.utils.data.DataLoader(question_dataset, batch_size=16, shuffle=True)
 # use hugging face trainer 
 args = TrainingArguments(
-    # output_dir='/common/scratch/CS425/CS425G7',
+    output_dir='/common/scratch/CS425/CS425G7',
     per_device_train_batch_size=16,
-    num_train_epochs=EPOCHS
+    num_train_epochs=EPOCHS,
+    save_strategy='no'
 )
 
 trainer = Trainer(
