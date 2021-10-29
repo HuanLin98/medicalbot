@@ -4,7 +4,7 @@ import pandas as pd
 from transformers import TrainingArguments
 from transformers import Trainer
 
-EPOCHS = 50
+EPOCHS = 28
 MODEL_PATH = "models"
 TEST_NAME = f"all_question_{EPOCHS}epoch"
 
