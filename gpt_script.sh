@@ -45,7 +45,7 @@
 #SBATCH --output=%u.%j.out # STDOUT
 
 # Give the job a name
-#SBATCH --job-name=gptTrainingtrial
+#SBATCH --job-name=gptLassetrial
 
 #################################################
 ##            END OF SBATCH COMMANDS           ##
