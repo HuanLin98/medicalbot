@@ -34,7 +34,7 @@ print("The padding token {} has the id {}".format(tokenizer.convert_ids_to_token
 print(f"The question token {'<|question|>'} has the id {tokenizer('<|question|>')}")
 print(f"The answer token {'<|answer|>'} has the id {tokenizer('<|answer|>')}")
 
-batch_size = 2
+batch_size = 512
 
 class GPT2Dataset(Dataset):
 
@@ -107,7 +107,7 @@ torch.cuda.manual_seed_all(seed_val)
 
 # some parameters I cooked up that work reasonably well
 
-epochs = 10
+epochs = 30
 learning_rate = 5e-4
 warmup_steps = 1e2
 epsilon = 1e-8
