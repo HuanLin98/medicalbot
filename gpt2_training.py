@@ -72,7 +72,7 @@ train_dataloader = DataLoader(
             train_dataset,  # The training samples.
             sampler = RandomSampler(train_dataset), # Select batches randomly
             batch_size = batch_size, # Trains with this batch size.
-            num_workers=4
+            num_workers=2
         )
 
 # For validation the order doesn't matter, so we'll just read them sequentially.
@@ -80,7 +80,7 @@ validation_dataloader = DataLoader(
             val_dataset, # The validation samples.
             sampler = SequentialSampler(val_dataset), # Pull out batches sequentially.
             batch_size = batch_size, # Evaluate with this batch size.
-            num_workers=4
+            num_workers=2
         )
 
 # I'm not really doing anything with the config buheret
