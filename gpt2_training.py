@@ -34,7 +34,7 @@ print("The padding token {} has the id {}".format(tokenizer.convert_ids_to_token
 print(f"The question token {'<|question|>'} has the id {tokenizer('<|question|>')}")
 print(f"The answer token {'<|answer|>'} has the id {tokenizer('<|answer|>')}")
 
-batch_size = 64
+batch_size = 32
 
 class GPT2Dataset(Dataset):
 
