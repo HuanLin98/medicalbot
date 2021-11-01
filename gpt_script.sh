@@ -21,7 +21,7 @@
 #SBATCH --cpus-per-task=8
 
 # Memory
-#SBATCH --mem 8GB
+#SBATCH --mem 16GB
 
 ################################################################
 ## EDIT AFTER THIS LINE IF YOU ARE OKAY WITH DEFAULT SETTINGS ##
@@ -45,7 +45,7 @@
 #SBATCH --output=%u.%j.out # STDOUT
 
 # Give the job a name
-#SBATCH --job-name=gptTrainingtrial
+#SBATCH --job-name=gptLassetrial
 
 #################################################
 ##            END OF SBATCH COMMANDS           ##
