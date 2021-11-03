@@ -45,7 +45,7 @@
 #SBATCH --output=%u.%j.out # STDOUT
 
 # Give the job a name
-#SBATCH --job-name=answ2_training
+#SBATCH --job-name=bertques_training
 
 #################################################
 ##            END OF SBATCH COMMANDS           ##
@@ -54,7 +54,7 @@
 # We're not loading any Python modules because Python is automatically loaded
 
 # Create a virtual environment
-python3 -m venv /common/scratch/CS425/CS425G7/myenv
+# python3 -m venv /common/scratch/CS425/CS425G7/myenv
 
 # This command assumes that you've already created the environment previously
 # We're using an absolute path here. You may use a relative path, as long as SRUN is execute in the same working directory
@@ -62,10 +62,10 @@ source /common/scratch/CS425/CS425G7/myenv/bin/activate
 
 
 # If you require any packages, install it as usual before the srun job submission.
-pip3 install pandas
-pip3 install numpy
-pip3 install torch==1.9.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
-pip3 install transformers
+# pip3 install pandas
+# pip3 install numpy
+# pip3 install torch==1.9.1+cu111 -f https://download.pytorch.org/whl/torch_stable.html
+# pip3 install transformers
 
 # Submit your job to the cluster
-srun --gres=gpu:3090:1 python answer_mbert_training.py
+srun --gres=gpu:3090:1 python question_mbert_training.py
