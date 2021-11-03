@@ -6,13 +6,13 @@ from transformers import Trainer
 
 EPOCHS = 28
 MODEL_PATH = "models"
-TEST_NAME = f"all_answer_{EPOCHS}epoch"
+TEST_NAME = f"bert_eng_answer_{EPOCHS}epoch"
 
-df = pd.read_csv("shuffled_qa_consolidated.csv")
+df = pd.read_csv("combined_eng.csv")
 print(df.shape)
 
-tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-uncased')
-model = BertForMaskedLM.from_pretrained('bert-base-multilingual-uncased')
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertForMaskedLM.from_pretrained('bert-base-uncased')
 
 questions = list(df.loc[:, "answer"])
 # questions = questions[:20]
