@@ -45,7 +45,7 @@
 #SBATCH --output=%u.%j.out # STDOUT
 
 # Give the job a name
-#SBATCH --job-name=bertques_training
+#SBATCH --job-name=medbert_ques_lasse
 
 #################################################
 ##            END OF SBATCH COMMANDS           ##
