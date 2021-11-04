@@ -6,13 +6,15 @@ from transformers import Trainer
 
 EPOCHS = 28
 MODEL_PATH = "models"
-TEST_NAME = f"bert_eng_answer_{EPOCHS}epoch"
+PRETRAINED_NAME = "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext"
+DATA_PATH = "lasse_qa.csv"
+TEST_NAME = f"medBERT_lasse_answer_{EPOCHS}epoch"
 
-df = pd.read_csv("combined_eng.csv")
+df = pd.read_csv(DATA_PATH)
 print(df.shape)
 
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-model = BertForMaskedLM.from_pretrained('bert-base-uncased')
+tokenizer = BertTokenizer.from_pretrained(PRETRAINED_NAME)
+model = BertForMaskedLM.from_pretrained(PRETRAINED_NAME)
 
 questions = list(df.loc[:, "answer"])
 # questions = questions[:20]
