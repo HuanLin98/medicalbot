@@ -12,16 +12,13 @@ torch.manual_seed(42)
 
 from transformers import GPT2LMHeadModel,  GPT2Tokenizer, GPT2Config, GPT2LMHeadModel
 from transformers import AdamW, get_linear_schedule_with_warmup
+import pickle
 
-# import nltk
-# nltk.download('punkt')
+# Load data (deserialize)
+with open('gpu_data/MBERT_Lasse_FAISS_embeddings.pkl', 'rb') as handle:
+    unserialized_data = pickle.load(handle)
 
-# df = pd.read_csv("lasse_qa.csv")
-df = pd.read_csv("translated_1_2_3.csv")
-print(df.shape)
-df.dropna(inplace=True)
-print(df.shape)
-
+df = pd.DataFrame(unserialized_data)
 for index, row in df.iterrows():
     print(f"Question1: {row['question']}")
     print(f"Answer: {row['answer']}")

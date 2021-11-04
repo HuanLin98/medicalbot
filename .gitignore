@@ -1,3 +1,4 @@
 gpt_models/
 training_data/
 create_ls_data.ipynb
+gpu_data/
