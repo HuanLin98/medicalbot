@@ -16,7 +16,8 @@ from transformers import AdamW, get_linear_schedule_with_warmup
 # import nltk
 # nltk.download('punkt')
 
-df = pd.read_csv("lasse_qa.csv")
+# df = pd.read_csv("lasse_qa.csv")
+df = pd.read_csv("translated_1_2_3.csv")
 print(df.shape)
 df.dropna(inplace=True)
 print(df.shape)
