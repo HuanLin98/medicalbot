@@ -15,11 +15,11 @@ from transformers import AdamW, get_linear_schedule_with_warmup
 import pickle
 
 # Load data (deserialize)
-with open('gpu_data/BERT_Lasse_Only_FAISS_embeddings.pkl', 'rb') as handle:
+with open('gpu_data/MED_BERT_Lasse_Only_FAISS.pkl', 'rb') as handle:
     unserialized_data = pickle.load(handle)
 
 df = pd.DataFrame(unserialized_data)
-print(f'loading from -- gpu_data/BERT_Lasse_Only_FAISS_embeddings.pkl')
+print(f'loading from -- gpu_data/MED_BERT_Lasse_Only_FAISS.pkl')
 print(df.shape)
 for index, row in df.iterrows():
     print(f"Question1: {row['question']}")
@@ -277,7 +277,7 @@ df_stats = pd.DataFrame(data=training_stats)
 df_stats = df_stats.set_index('epoch')
 
 # Save df to csv
-df_stats.to_csv('model_stats.csv')
+df_stats.to_csv('model_stats_2.csv')
 
 # Get all of the model's parameters as a list of tuples.
 params = list(model.named_parameters())
@@ -301,7 +301,7 @@ for p in params[-2:]:
 
 # Saving best-practices: if you use defaults names for the model, you can reload it using from_pretrained()
 
-output_dir = './model_save/'
+output_dir = './model_save_2/'
 
 # Create output directory if needed
 if not os.path.exists(output_dir):
