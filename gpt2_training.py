@@ -15,10 +15,12 @@ from transformers import AdamW, get_linear_schedule_with_warmup
 import pickle
 
 # Load data (deserialize)
-with open('gpu_data/MBERT_Lasse_FAISS_embeddings.pkl', 'rb') as handle:
+with open('gpu_data/BERT_Lasse_Only_FAISS_embeddings.pkl', 'rb') as handle:
     unserialized_data = pickle.load(handle)
 
 df = pd.DataFrame(unserialized_data)
+print(f'loading from -- gpu_data/BERT_Lasse_Only_FAISS_embeddings.pkl')
+print(df.shape)
 for index, row in df.iterrows():
     print(f"Question1: {row['question']}")
     print(f"Answer: {row['answer']}")
