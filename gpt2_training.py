@@ -14,6 +14,7 @@ from transformers import GPT2LMHeadModel,  GPT2Tokenizer, GPT2Config, GPT2LMHead
 from transformers import AdamW, get_linear_schedule_with_warmup
 import pickle
 
+print("Training gpt2-medium")
 # Load data (deserialize)
 with open('gpu_data/MED_BERT_Lasse_Only_FAISS.pkl', 'rb') as handle:
     unserialized_data = pickle.load(handle)
@@ -38,7 +39,7 @@ batch_size = 4
 
 class GPT2Dataset(Dataset):
 
-  def __init__(self, df, tokenizer, gpt2_type="gpt2", max_length=768):
+  def __init__(self, df, tokenizer, gpt2_type="gpt2-medium", max_length=768):
 
     self.tokenizer = tokenizer
     self.input_ids = []
@@ -84,10 +85,10 @@ validation_dataloader = DataLoader(
         )
 
 # I'm not really doing anything with the config buheret
-configuration = GPT2Config.from_pretrained('gpt2', output_hidden_states=False)
+configuration = GPT2Config.from_pretrained('gpt2-medium', output_hidden_states=False)
 
 # instantiate the model
-model = GPT2LMHeadModel.from_pretrained("gpt2", config=configuration)
+model = GPT2LMHeadModel.from_pretrained("gpt2-medium", config=configuration)
 
 # this step is necessary because I've added some tokens (bos_token, etc) to the embeddings
 # otherwise the tokenizer and model tensors won't match up
