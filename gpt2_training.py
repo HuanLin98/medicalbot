@@ -23,8 +23,8 @@ df = pd.DataFrame(unserialized_data)
 print(f'loading from -- gpu_data/FAISS_chi_embeddings.pkl')
 print(df.shape)
 for index, row in df.iterrows():
-    print(f"Question1: {row['question']}")
-    print(f"Answer: {row['answer']}")
+    print(f"Question1: {row['translated_ques']}")
+    print(f"Answer: {row['translated_ans']}")
     break
 
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2', bos_token='<|startoftext|>', eos_token='<|endoftext|>', pad_token='<|pad|>') #gpt2
