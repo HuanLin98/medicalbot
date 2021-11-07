@@ -14,20 +14,20 @@ from transformers import GPT2LMHeadModel,  GPT2Tokenizer, GPT2Config, GPT2LMHead
 from transformers import AdamW, get_linear_schedule_with_warmup
 import pickle
 
-print("Training gpt2-medium")
+print("Training gpt2")
 # Load data (deserialize)
-with open('gpu_data/MED_BERT_Lasse_Only_FAISS.pkl', 'rb') as handle:
+with open('gpu_data/FAISS_chi_embeddings.pkl', 'rb') as handle:
     unserialized_data = pickle.load(handle)
 
 df = pd.DataFrame(unserialized_data)
-print(f'loading from -- gpu_data/MED_BERT_Lasse_Only_FAISS.pkl')
+print(f'loading from -- gpu_data/FAISS_chi_embeddings.pkl')
 print(df.shape)
 for index, row in df.iterrows():
     print(f"Question1: {row['question']}")
     print(f"Answer: {row['answer']}")
     break
 
-tokenizer = GPT2Tokenizer.from_pretrained('gpt2', bos_token='<|startoftext|>', eos_token='<|endoftext|>', pad_token='<|pad|>') #gpt2-medium
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2', bos_token='<|startoftext|>', eos_token='<|endoftext|>', pad_token='<|pad|>') #gpt2
 print("The max model length is {} for this model, although the actual embedding size for GPT small is 768".format(tokenizer.model_max_length))
 print("The beginning of sequence token {} token has the id {}".format(tokenizer.convert_ids_to_tokens(tokenizer.bos_token_id), tokenizer.bos_token_id))
 print("The end of sequence token {} has the id {}".format(tokenizer.convert_ids_to_tokens(tokenizer.eos_token_id), tokenizer.eos_token_id))
@@ -39,7 +39,7 @@ batch_size = 4
 
 class GPT2Dataset(Dataset):
 
-  def __init__(self, df, tokenizer, gpt2_type="gpt2-medium", max_length=768):
+  def __init__(self, df, tokenizer, gpt2_type="gpt2", max_length=768):
 
     self.tokenizer = tokenizer
     self.input_ids = []
@@ -85,10 +85,10 @@ validation_dataloader = DataLoader(
         )
 
 # I'm not really doing anything with the config buheret
-configuration = GPT2Config.from_pretrained('gpt2-medium', output_hidden_states=False)
+configuration = GPT2Config.from_pretrained('gpt2', output_hidden_states=False)
 
 # instantiate the model
-model = GPT2LMHeadModel.from_pretrained("gpt2-medium", config=configuration)
+model = GPT2LMHeadModel.from_pretrained("gpt2", config=configuration)
 
 # this step is necessary because I've added some tokens (bos_token, etc) to the embeddings
 # otherwise the tokenizer and model tensors won't match up
@@ -108,7 +108,7 @@ torch.cuda.manual_seed_all(seed_val)
 
 # some parameters I cooked up that work reasonably well
 
-epochs = 30
+epochs = 5
 learning_rate = 5e-4
 warmup_steps = 1e2
 epsilon = 1e-8
