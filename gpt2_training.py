@@ -16,15 +16,15 @@ import pickle
 
 print("Training gpt2")
 # Load data (deserialize)
-with open('gpu_data/FAISS_BERT_chi_embeddings.pkl', 'rb') as handle:
+with open('gpu_data/FAISS_500_Med_BERT_Lasse_Only.pkl', 'rb') as handle:
     unserialized_data = pickle.load(handle)
 
 df = pd.DataFrame(unserialized_data)
-print(f'loading from -- gpu_data/FAISS_BERT_chi_embeddings.pkl')
+print(f'loading from -- gpu_data/FAISS_500_Med_BERT_Lasse_Only.pkl')
 print(df.shape)
 for index, row in df.iterrows():
-    print(f"Question1: {row['translated_ques']}")
-    print(f"Answer: {row['translated_ans']}")
+    print(f"Question1: {row['question']}")
+    print(f"Answer: {row['answer']}")
     break
 
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2', bos_token='<|startoftext|>', eos_token='<|endoftext|>', pad_token='<|pad|>') #gpt2
