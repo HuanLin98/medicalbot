@@ -16,11 +16,11 @@ import pickle
 
 print("Training gpt2")
 # Load data (deserialize)
-with open('gpu_data/FAISS_chi_embeddings.pkl', 'rb') as handle:
+with open('gpu_data/FAISS_BERT_chi_embeddings.pkl', 'rb') as handle:
     unserialized_data = pickle.load(handle)
 
 df = pd.DataFrame(unserialized_data)
-print(f'loading from -- gpu_data/FAISS_chi_embeddings.pkl')
+print(f'loading from -- gpu_data/FAISS_BERT_chi_embeddings.pkl')
 print(df.shape)
 for index, row in df.iterrows():
     print(f"Question1: {row['translated_ques']}")
