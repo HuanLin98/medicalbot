@@ -108,7 +108,7 @@ torch.cuda.manual_seed_all(seed_val)
 
 # some parameters I cooked up that work reasonably well
 
-epochs = 5
+epochs = 30
 learning_rate = 5e-4
 warmup_steps = 1e2
 epsilon = 1e-8
@@ -278,7 +278,7 @@ df_stats = pd.DataFrame(data=training_stats)
 df_stats = df_stats.set_index('epoch')
 
 # Save df to csv
-df_stats.to_csv('model_stats_2.csv')
+df_stats.to_csv('model_stats.csv')
 
 # Get all of the model's parameters as a list of tuples.
 params = list(model.named_parameters())
@@ -302,7 +302,7 @@ for p in params[-2:]:
 
 # Saving best-practices: if you use defaults names for the model, you can reload it using from_pretrained()
 
-output_dir = './model_save_2/'
+output_dir = './model_save/'
 
 # Create output directory if needed
 if not os.path.exists(output_dir):
