@@ -80,6 +80,7 @@ def get_prediction(n, query):
 results = pd.DataFrame(columns=['model', 'bluert'])
 
 for gpt_path in gpt_paths:
+    preds = pd.DataFrame(columns=['question', 'pred', 'actual'])
     gpt_tokenizer = GPT2Tokenizer.from_pretrained('gpt2', bos_token='<|startoftext|>', eos_token='<|endoftext|>', pad_token='<|pad|>') #gpt2-medium
 
     # gpt_path = 'C:/Users/wjtay/Documents/GitHub/medicalbot/gpt_models/model_save_3_lasseOnly_30'
@@ -100,11 +101,18 @@ for gpt_path in gpt_paths:
         metric.add(prediction=predictions, reference=references)
         # metric.add(prediction=["hello world"], reference=["hello worlds"])
         # print(metric.compute(prediction=["hello world"], reference=["hello worlds"]))
+
+        datapoint = {'question' : row["question"]}
+        datapoint.update({'pred' : predictions[0]})
+        datapoint.update({'actual' : references[0]})
+        preds = preds.append(datapoint, ignore_index=True)
+
         if(idx % 5 == 0):
             logging.info(f"question {row['question']}")
             logging.info(f"predictions {predictions} ")
             logging.info(f"references {references} ")
 
+    
     score = metric.compute()
     print(sum(score['scores']) / len(score['scores']))
     datapoint = {"model": gpt_path.split('/')[-1]}
@@ -112,6 +120,7 @@ for gpt_path in gpt_paths:
     results = results.append(datapoint, ignore_index=True)
 
     save_name = save_path + gpt_path.split('/')[-1]
+    preds.to_csv(save_name + '.csv')
     save_obj(score,save_name)
     logging.info(f'Result-{gpt_path}')
     logging.info(f'Saving score to -{save_name}')
